@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
             min-height: 250px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 </head>
 
@@ -53,9 +54,13 @@ if (isset($_POST['submit'])) {
                     <div class="form-group mb-4">
 
                         <label class="control-label col-sm-2" for="subject">Subject:</label>
-                        <div class="col-sm-10">
+                        <!-- <div class="col-sm-10">
                             <input type="text" class="form-control" id="subject" placeholder="Enter Subject"
                                 name="subject" value="<?= $row['subject'] ?>">
+                        </div> -->
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="subject" placeholder="Enter Subject"
+                                name="subject" value="">
                         </div>
 
                     </div>
@@ -63,8 +68,11 @@ if (isset($_POST['submit'])) {
                     <div class="form-group mb-4">
 
                         <label class="control-label col-sm-2" for="message">Message:</label>
-                        <div class="col-sm-10">
+                        <!-- <div class="col-sm-10">
                             <textarea class="form-control editor" name="message" <?= $row['message'] ?>></textarea>
+                        </div> -->
+                        <div class="col-sm-10">
+                            <textarea class="form-control editor" name="message"></textarea>
                         </div>
 
                     </div>
@@ -84,12 +92,21 @@ if (isset($_POST['submit'])) {
     </div>
     <!-- Script -->
     <!-- ckeditor5 JS -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/mhchem.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/isaul32/ckeditor5@c3463fe834049bf5d805d1d22402108a9c0576bd/packages/ckeditor5-build-classic/build/ckeditor.js"></script>
+    
     <script type="text/javascript">
         ClassicEditor
             .create(document.querySelector('.editor'), {
                 ckfinder: {
                     uploadUrl: "ckfileupload.php",
+                },
+                math: {
+                    outputType: 'span'
                 }
             })
             .then(editor => {
